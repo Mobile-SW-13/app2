@@ -20,7 +20,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     <ListView
-            android:id="@+id/account_List"
+            android:id="@+id/listview_word_mean"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@id/top_list" tools:layout_editor_absoluteX="0dp"

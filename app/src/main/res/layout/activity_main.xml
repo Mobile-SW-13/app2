@@ -8,67 +8,78 @@
         tools:context=".MainActivity">
 
 
-    <fragment
-            android:layout_width="0dp"
-            android:layout_height="0dp" android:name="com.example.myapplication.Fragment_word"
-            android:id="@+id/fragment" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent" app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/buttonlist" app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintVertical_bias="1.0" android:layout_marginTop="50dp"/>
     <android.support.constraint.ConstraintLayout
+            android:id="@+id/buttonlist"
             android:layout_width="395dp"
             android:layout_height="100dp"
-            android:id="@+id/buttonlist" app:layout_constraintTop_toBottomOf="@id/fragment"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
 
 
         <Button
+                android:id="@+id/button_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_orange_light"
                 android:text="WORD"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/button_both"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+                android:id="@+id/button_both"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_orange_light"
-                android:id="@+id/button_word" app:layout_constraintRight_toLeftOf="@id/button_both"
-                app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-        <Button
                 android:text="BOTH"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_orange_light"
-                android:id="@+id/button_both" app:layout_constraintLeft_toRightOf="@id/button_word"
-                app:layout_constraintRight_toLeftOf="@id/button_mean" app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/button_word"
+                app:layout_constraintRight_toLeftOf="@id/button_mean"
+                app:layout_constraintTop_toTopOf="parent" />
+
         <Button
-                android:text="MEAN"
+                android:id="@+id/button_mean"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_orange_light"
-                android:id="@+id/button_mean" app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/button_both" app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:text="MEAN"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/button_both"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintRight_toRightOf="parent" app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/fragment" app:layout_constraintTop_toTopOf="parent">
-
-    </android.support.constraint.ConstraintLayout>
     <Button
+            android:id="@+id/button_quiz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_orange_light"
             android:text="QUIZ"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_orange_light"
-            android:id="@+id/button_quiz" app:layout_constraintTop_toTopOf="parent"
-    />
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintRight_toLeftOf="@id/button_find"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     <Button
-            android:text="FIND"
+            android:id="@+id/button_find"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_orange_light"
-            android:id="@+id/button_find"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintRight_toRightOf="parent"/>
+            android:text="FIND"
+            app:layout_constraintBaseline_toBaselineOf="@id/button_quiz"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    <FrameLayout
+            android:id="@+id/fragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/buttonlist"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_quiz">
+
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
