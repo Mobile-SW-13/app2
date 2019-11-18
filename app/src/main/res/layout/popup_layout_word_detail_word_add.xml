@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/white">
+
+    <TextView
+            android:id="@+id/txt_popup_word_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름 : "
+            app:layout_constraintBottom_toTopOf="@id/txt_popup_word_mean"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/txt_edit_word_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+            android:id="@+id/txt_popup_word_mean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="뜻 : "
+            app:layout_constraintBottom_toTopOf="@id/btn_popup_close"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/txt_edit_word_mean"
+            app:layout_constraintTop_toBottomOf="@id/txt_popup_word_name" />
 
     <EditText
             android:id="@+id/txt_edit_word_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            app:layout_constraintBaseline_toBaselineOf="@id/txt_word_name"
-            app:layout_constraintLeft_toRightOf="@id/txt_word_name"
+            app:layout_constraintBaseline_toBaselineOf="@id/txt_popup_word_name"
+            app:layout_constraintLeft_toRightOf="@id/txt_popup_word_name"
             app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
             android:id="@+id/txt_edit_word_mean"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:autoText="false"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            app:layout_constraintBaseline_toBaselineOf="@id/txt_word_mean"
-            app:layout_constraintLeft_toRightOf="@id/txt_word_mean"
+            android:privateImeOptions="defaultInputMode=korean"
+            app:layout_constraintBaseline_toBaselineOf="@id/txt_popup_word_mean"
             app:layout_constraintRight_toRightOf="parent" />
 
-    <TextView
-            android:id="@+id/txt_word_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이름  : "
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/txt_edit_word_name"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-            android:id="@+id/txt_word_mean"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="뜻 : "
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/txt_edit_word_mean"
-            app:layout_constraintTop_toBottomOf="@id/txt_word_name" />
-
     <Button
-            android:id="@+id/btn_close"
+            android:id="@+id/btn_popup_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="close"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/btn_add"
-            app:layout_constraintTop_toBottomOf="@id/txt_word_mean" />
+            app:layout_constraintRight_toLeftOf="@id/btn_popup_add"
+            app:layout_constraintTop_toBottomOf="@id/txt_popup_word_mean" />
 
     <Button
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_popup_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="add"
-            app:layout_constraintBaseline_toBaselineOf="@id/btn_close"
-            app:layout_constraintLeft_toRightOf="@id/btn_close"
+            app:layout_constraintBaseline_toBaselineOf="@id/btn_popup_close"
+            app:layout_constraintLeft_toRightOf="@id/btn_popup_close"
             app:layout_constraintRight_toRightOf="parent" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

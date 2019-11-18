@@ -1,10 +1,9 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_both.*
 import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +19,10 @@ class MainActivity : AppCompatActivity() {
         wordList.add(Word("banana","바나나"))
 
         button_quiz.setOnClickListener{
+            var findBundle  = Bundle()
+            findBundle.putSerializable("word", wordList)
             val intent=Intent(this,QuizActivity::class.java)
+            intent.putExtra("wordList", findBundle)
             startActivity(intent)
         }
 
@@ -34,42 +36,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         button_word.setOnClickListener{
-            var wordBundle  = Bundle()
-            wordBundle.putSerializable("word", wordList)
-
-            var wordFragment = Fragment_word()
-            wordFragment.arguments = wordBundle
-
-
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, wordFragment)
-                .commit()
+            FragmentWord()
         }
 
         button_both.setOnClickListener{
-            var bothBundle  = Bundle()
-            bothBundle.putSerializable("word", wordList)
-
-            var bothFragment = Fragment_both()
-            bothFragment.arguments = bothBundle
-
-
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, bothFragment)
-                .commit()
+            FragmentBoth()
         }
 
         button_mean.setOnClickListener{
-            var meanBundle  = Bundle()
-            meanBundle.putSerializable("word", wordList)
-
-            var meanFragment = Fragment_mean()
-            meanFragment.arguments = meanBundle
-
-
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, meanFragment)
-                .commit()
+            FragmentMean()
         }
     }
 
@@ -84,6 +59,47 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun FragmentBoth(){
+        var bothBundle  = Bundle()
+        bothBundle.putSerializable("word", wordList)
+
+        var bothFragment = Fragment_both()
+        bothFragment.arguments = bothBundle
+
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment, bothFragment)
+            .commit()
+
+
+    }
+
+    fun FragmentMean(){
+        var meanBundle  = Bundle()
+        meanBundle.putSerializable("word", wordList)
+
+        var meanFragment = Fragment_mean()
+        meanFragment.arguments = meanBundle
+
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment, meanFragment)
+            .commit()
+    }
+
+    fun FragmentWord(){
+        var wordBundle  = Bundle()
+        wordBundle.putSerializable("word", wordList)
+
+        var wordFragment = Fragment_word()
+        wordFragment.arguments = wordBundle
+
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment, wordFragment)
+            .commit()
     }
 
 }

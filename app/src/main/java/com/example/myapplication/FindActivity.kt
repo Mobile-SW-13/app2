@@ -2,7 +2,7 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.AsyncTask
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -10,7 +10,6 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_find.*
-import kotlinx.android.synthetic.main.activity_quiz.button_home
 import java.io.BufferedReader
 import java.io.DataOutputStream
 import java.io.InputStreamReader
@@ -41,7 +40,7 @@ class FindActivity : AppCompatActivity() {
             confirmValue = 1
         }
 
-        btn_add.setOnClickListener {
+        btn_popup_add.setOnClickListener {
             if(confirmValue == 0){
                 Toast.makeText(this, "저장할 단어가 없습니다.", Toast.LENGTH_SHORT).show();
             }else{
@@ -50,7 +49,7 @@ class FindActivity : AppCompatActivity() {
             }
         }
 
-        button_home.setOnClickListener{
+        btn_home.setOnClickListener{
             var sendBundle  = Bundle()
             sendBundle.putSerializable("word", wordListFA)
 
