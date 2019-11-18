@@ -18,6 +18,11 @@ class MainActivity : AppCompatActivity() {
         wordList.add(Word("apple", "사과"))
         wordList.add(Word("banana","바나나"))
 
+        if(intent.hasExtra("wordList")){
+            var getFindBundle = intent.getBundleExtra("wordList")
+            wordList = getFindBundle.get("word") as ArrayList<Word>
+        }
+
         button_quiz.setOnClickListener{
             var findBundle  = Bundle()
             findBundle.putSerializable("word", wordList)
@@ -56,6 +61,12 @@ class MainActivity : AppCompatActivity() {
                 if(data!!.hasExtra("wordList")){
                     var getBundle = data.getBundleExtra("wordList")
                     wordList = getBundle.get("word") as ArrayList<Word>
+                    var findBundle  = Bundle()
+                    findBundle.putSerializable("word", wordList)
+                    val intent=Intent(this,MainActivity::class.java)
+                    intent.putExtra("wordList", findBundle)
+                    finish()
+                    startActivity(intent)
                 }
             }
         }
