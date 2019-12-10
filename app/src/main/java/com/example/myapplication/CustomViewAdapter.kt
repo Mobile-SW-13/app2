@@ -1,17 +1,19 @@
 package com.example.myapplication
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
+import com.google.firebase.database.FirebaseDatabase
 
 
-class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int): BaseAdapter(){
+class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int, val userId : String): BaseAdapter(){
 
     var defRefresh : Int = -1
+
+    val db = FirebaseDatabase.getInstance()
 
     override fun getCount(): Int {
         return wordListCV.size
@@ -54,6 +56,8 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int): BaseAd
 
             buttonDeleteWord.setOnClickListener {
                 wordListCV.remove(listViewItem)
+                val wordDelRef = db.getReference("${userId}/wordNote/${listViewItem.wordName}")
+                wordDelRef.removeValue()
                 notifyDataSetChanged()
 
             }
@@ -73,6 +77,8 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int): BaseAd
 
             buttonDeleteWord.setOnClickListener {
                 wordListCV.remove(listViewItem)
+                val wordDelRef = db.getReference("${userId}/wordNote/${listViewItem.wordName}")
+                wordDelRef.removeValue()
                 notifyDataSetChanged()
             }
 
@@ -90,6 +96,8 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int): BaseAd
 
             buttonDeleteWord.setOnClickListener {
                 wordListCV.remove(listViewItem)
+                val wordDelRef = db.getReference("${userId}/wordNote/${listViewItem.wordName}")
+                wordDelRef.removeValue()
                 notifyDataSetChanged()
             }
 

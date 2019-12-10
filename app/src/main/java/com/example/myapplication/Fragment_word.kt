@@ -10,6 +10,7 @@ import android.widget.ListView
 class Fragment_word : Fragment() {
 
     var wordListFW = ArrayList<Word>()
+    var userId = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -17,9 +18,11 @@ class Fragment_word : Fragment() {
 
 
         wordListFW = arguments!!.get("word") as ArrayList<Word>
+        userId = arguments!!.get("userId") as String
 
 
-        val adapter = CustomViewAdapter(wordListFW,0 )
+
+        val adapter = CustomViewAdapter(wordListFW,0 , userId)
 
         val listview = layout.findViewById(R.id.listview_word_name) as ListView
         listview.setAdapter(adapter)

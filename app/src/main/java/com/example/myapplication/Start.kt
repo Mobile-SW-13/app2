@@ -15,7 +15,7 @@ class Start : AppCompatActivity() {
 
         Handler().postDelayed({
             //어떤 액티비티로 넘어 갈지 설정 - 당연히 메인액티비로 넘어 가면 된다.
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }, SPLASH_TIME_OUT)
     }

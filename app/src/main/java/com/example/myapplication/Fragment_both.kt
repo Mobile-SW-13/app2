@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.content.Context
 import android.os.Bundle
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -9,25 +8,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import kotlinx.android.synthetic.main.fragment_both.*
-import kotlinx.android.synthetic.main.popup_layout_word_detail_word_add.*
-import kotlinx.android.synthetic.main.popup_layout_word_detail_word_add.view.*
-import java.nio.channels.GatheringByteChannel
-import java.util.zip.Inflater
+import com.google.firebase.database.FirebaseDatabase
+
 
 class Fragment_both : Fragment() {
 
+    val bothDB = FirebaseDatabase.getInstance()
+
     var wordListFB = ArrayList<Word>()
+    var userId = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val layout = inflater.inflate(R.layout.fragment_both, container, false)
 
 
-        wordListFB = arguments!!.get("word") as ArrayList<Word>
+        val wordListtemp  = arguments!!.get("word") as ArrayList<Word>
+
+        var idx = 0
+        while(idx<wordListtemp.size){
+            wordListFB.add(wordListtemp[idx])
+
+            idx+=1
+        }
+
+        userId = arguments!!.get("userId") as String
 
 
-        var adapter = CustomViewAdapter(wordListFB,2 )
+        var adapter = CustomViewAdapter(wordListFB,2, userId )
 
 
         var listview = layout.findViewById(R.id.listview_word_both) as ListView
@@ -60,9 +68,15 @@ class Fragment_both : Fragment() {
                 if(textMean.text.toString() == ""||textName.text.toString() == ""){
                     Toast.makeText(container?.context, "?", Toast.LENGTH_LONG)
                 }else{
+
+
+                    val bothRef = bothDB.getReference("${userId}/wordNote/${textName.text.toString()}")
+                    bothRef.setValue("${textMean.text}")
                     wordListFB.add(Word(textName.text.toString(),textMean.text.toString()))
                     adapter.notifyDataSetChanged()
                     popupWindow.dismiss()
+
+
 
                 }
             }

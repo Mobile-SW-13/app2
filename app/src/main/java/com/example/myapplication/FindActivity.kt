@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_find.*
@@ -20,17 +22,28 @@ import java.net.URLEncoder
 class FindActivity : AppCompatActivity() {
 
     var sourceText: String? = null
-    var wordListFA = ArrayList<Word>()
-    private var statusProgress: ProgressBar?=null;
+    //var wordListFA = ArrayList<Word>()
+    //private var statusProgress: ProgressBar?=null;
     var confirmValue = 0
+    //var wordSize = 0
+    val db = FirebaseDatabase.getInstance()
+    var userId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find)
 
-        if(intent.hasExtra("wordList")){
+        //statusProgress = progressBar
+
+        /*if(intent.hasExtra("wordList")){
             var getFindBundle = intent.getBundleExtra("wordList")
             wordListFA = getFindBundle.get("word") as ArrayList<Word>
+
+            wordSize = wordListFA.size
+        }*/
+
+        if(intent.hasExtra("userId")){
+            userId = intent.getStringExtra("userId")
         }
 
         btn_search.setOnClickListener(){
@@ -44,19 +57,25 @@ class FindActivity : AppCompatActivity() {
             if(confirmValue == 0){
                 Toast.makeText(this, "저장할 단어가 없습니다.", Toast.LENGTH_SHORT).show();
             }else{
-                wordListFA.add(Word(txt_edit.text.toString(), txt_result.text.toString()))
+                //wordListFA.add(Word(txt_edit.text.toString(), txt_result.text.toString()))
+
+                val wordAddRef = db.getReference("${userId}/wordNote/${txt_edit.text}")
+                wordAddRef.setValue("${txt_result.text}")
+
+
                 Toast.makeText(this, "\"${txt_edit.text}\" 단어가 추가됐습니다.", Toast.LENGTH_SHORT).show();
             }
         }
 
         btn_home.setOnClickListener{
-            var sendBundle  = Bundle()
-            sendBundle.putSerializable("word", wordListFA)
+            //var sendBundle  = Bundle()
+            //sendBundle.putSerializable("word", wordListFA)
 
-            val sendintent=Intent(this,MainActivity::class.java)
-            sendintent.putExtra("wordList", sendBundle)
+            //val sendintent=Intent(this,MainActivity::class.java)
+            //sendintent.putExtra("wordList", sendBundle)
+            //sendintent.putExtra("wordSize", wordSize)
 
-            setResult(1, sendintent)
+            //setResult(1, sendintent)
             finish()
         }
 
@@ -65,7 +84,7 @@ class FindActivity : AppCompatActivity() {
     inner class AsyncTaskNMT : AsyncTask<String, String, String>() {
         override fun onPreExecute() {
             super.onPreExecute()
-            statusProgress?.visibility = View.VISIBLE
+            //statusProgress?.visibility = View.VISIBLE
         }
 
         override fun doInBackground(vararg params: String): String {
@@ -134,7 +153,7 @@ class FindActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
-            statusProgress?.visibility = View.GONE
+            //statusProgress?.visibility = View.INVISIBLE
 
             //번역된 결과를 resultView에 출력하자.
             txt_result.setText(result)
