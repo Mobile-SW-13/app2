@@ -34,24 +34,25 @@ class MainActivity : AppCompatActivity() {
 
         myreff.addChildEventListener(object : ChildEventListener{
             override fun onChildRemoved(p0: DataSnapshot) {
-                println("Removed")
+                wordList.remove(p0.value)
+                println("Main-Start : Removed")
             }
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                println("added : ${p0.value.toString()}")
+                println("Main-Start : added : ${p0.value.toString()}")
                 wordList.add(Word(p0.key.toString(),p0.value.toString()))
             }
 
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                println("changed")
+                println("Main-Start : changed")
             }
 
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-                println("moved")
+                println("Main-Start : moved")
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                println("cancelled")
+                println("Main-Start : cancelled")
             }
 
         })
@@ -59,24 +60,24 @@ class MainActivity : AppCompatActivity() {
         val shareRef = db.getReference("")
         shareRef.addChildEventListener(object : ChildEventListener{
             override fun onChildRemoved(p0: DataSnapshot) {
-                println("share : removed")
+                println("main-share : removed")
             }
 
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                println("share : ${p0.key.toString()}")
+                println("main-share : share : ${p0.key.toString()}")
                 userList.add(p0.key.toString())
             }
 
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                println("share : changeed")
+                println("main-share : share : changeed")
             }
 
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-                println("share : moved")
+                println("main-share : share : moved")
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                println("share : cancelled")
+                println("main-share : share : cancelled")
             }
 
         })

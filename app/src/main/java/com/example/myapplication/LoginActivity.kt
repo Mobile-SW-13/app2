@@ -38,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
             if(idx==userList.size){
                 val newLoginRef = db.getReference("${userIdText.text}/login")
                 newLoginRef.setValue("${edit_login_passwd.text}")
+                newLoginRef.addValueEventListener(newLoginListener)
 
                 Handler().postDelayed({
                     val mainIntent = Intent(this, MainActivity::class.java)
@@ -48,10 +49,12 @@ class LoginActivity : AppCompatActivity() {
 
 
             }else{
-                val loginPasswdRef = db.getReference("${userIdText.text}/login")
+                val loginPasswdRef = db.getReference("${userIdText.text}")
                 loginPasswdRef.addChildEventListener(passwdListener)
 
                 Handler().postDelayed({
+                    println("test : ${edit_login_passwd.text} : ${edit_login_id.text}")
+                    println("what :  ${loginPasswd}")
                     if(loginPasswd==edit_login_passwd.text.toString()){
                         val mainIntent = Intent(this, MainActivity::class.java)
                         mainIntent.putExtra("userId", userList[idx])
@@ -70,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
 
     val userLoginListener = object : ChildEventListener {
         override fun onChildRemoved(p0: DataSnapshot) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            println("login : removed")
         }
 
         override fun onChildAdded(p0: DataSnapshot, p1: String?) {
@@ -79,23 +82,22 @@ class LoginActivity : AppCompatActivity() {
         }
 
         override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-            println("changed")
+            println("login : changed")
         }
 
         override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            println("login : moved")
         }
 
         override fun onCancelled(p0: DatabaseError) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            println("login : cancelled")
         }
     }
 
     val passwdListener = object : ChildEventListener{
         override fun onChildRemoved(p0: DataSnapshot) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            println("removed")
         }
-
         override fun onChildAdded(p0: DataSnapshot, p1: String?) {
             if(p0.key.toString() == "login"){
                 loginPasswd = p0.value.toString()
@@ -103,15 +105,15 @@ class LoginActivity : AppCompatActivity() {
         }
 
         override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            println("changed")
         }
 
         override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            println("moved")
         }
 
         override fun onCancelled(p0: DatabaseError) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            println("cancelled")
         }
     }
 
@@ -121,7 +123,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         override fun onCancelled(p0: DatabaseError) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            println("cancelled")
         }
 
     }

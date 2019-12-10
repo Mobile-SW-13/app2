@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import android.content.Intent
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,7 +81,10 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int, val use
                 wordListCV.remove(listViewItem)
                 val wordDelRef = db.getReference("${userId}/wordNote/${listViewItem.wordName}")
                 wordDelRef.removeValue()
+
                 notifyDataSetChanged()
+
+
             }
 
             return view
@@ -98,7 +103,9 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int, val use
                 wordListCV.remove(listViewItem)
                 val wordDelRef = db.getReference("${userId}/wordNote/${listViewItem.wordName}")
                 wordDelRef.removeValue()
+
                 notifyDataSetChanged()
+
             }
 
             return view
