@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="단어와 맞는 뜻을 고르세요."
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="23dp"
             app:layout_constraintBottom_toTopOf="@+id/constraint"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="아래쪽 임의의 버튼을 눌러 시작하세요."
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/constraint"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,13 +58,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
             android:layout_width="0dp"
             android:layout_height="350dp"
-            android:id="@+id/constraint"
+            android:background="#FFFACD"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:background="#FFFFFF">
+            app:layout_constraintStart_toStartOf="parent">
 
         <Button
                 android:id="@+id/btn_answer_one"

@@ -1,7 +1,6 @@
 package com.example.myapplication
 
-import android.content.Intent
-import android.os.Handler
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,6 @@ import com.google.firebase.database.FirebaseDatabase
 
 
 class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int, val userId : String): BaseAdapter(){
-
-    var defRefresh : Int = -1
 
     val db = FirebaseDatabase.getInstance()
 
@@ -32,8 +29,6 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int, val use
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
         var context = parent
-
-
 
 
         if (view == null) {
@@ -58,8 +53,10 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int, val use
 
             buttonDeleteWord.setOnClickListener {
                 wordListCV.remove(listViewItem)
+                println("test code : both delete word")
                 val wordDelRef = db.getReference("${userId}/wordNote/${listViewItem.wordName}")
                 wordDelRef.removeValue()
+
                 notifyDataSetChanged()
 
             }
@@ -79,11 +76,11 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int, val use
 
             buttonDeleteWord.setOnClickListener {
                 wordListCV.remove(listViewItem)
+                println("test code : mean delete word")
                 val wordDelRef = db.getReference("${userId}/wordNote/${listViewItem.wordName}")
                 wordDelRef.removeValue()
 
                 notifyDataSetChanged()
-
 
             }
 
@@ -101,6 +98,7 @@ class CustomViewAdapter(val wordListCV: ArrayList<Word>, val type : Int, val use
 
             buttonDeleteWord.setOnClickListener {
                 wordListCV.remove(listViewItem)
+                println("test code : name delete word")
                 val wordDelRef = db.getReference("${userId}/wordNote/${listViewItem.wordName}")
                 wordDelRef.removeValue()
 

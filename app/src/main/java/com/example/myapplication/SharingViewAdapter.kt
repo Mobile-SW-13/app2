@@ -28,7 +28,7 @@ class SharingViewAdapter(val context : Context, val listUser : List<String>) : B
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view : View
+        var view = convertView
         println("adapter Set")
         if(convertView == null){
             view = LayoutInflater.from(parent!!.context).inflate(R.layout.layout_userlist_detail, null)
@@ -39,7 +39,7 @@ class SharingViewAdapter(val context : Context, val listUser : List<String>) : B
 
             return view
         }else{
-            return convertView
+            return view!!
         }
 
 

@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.activity_other_list.*
 
 class OtherActivity : AppCompatActivity() {
     var wordListOther = ArrayList<Word>()
+    var userID = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +17,7 @@ class OtherActivity : AppCompatActivity() {
         if(intent.hasExtra("wordList")){
             var getFindBundle = intent.getBundleExtra("wordList")
             var wordListTemp = getFindBundle.get("word") as ArrayList<Word>
+            userID = intent.getStringExtra("userID")
 
             var idx = 0
             while(idx<wordListTemp.size){
@@ -23,6 +25,8 @@ class OtherActivity : AppCompatActivity() {
                 idx+=1
             }
         }
+
+        text_other_list_title.text = "${userID}'s WordNote"
 
         val listView = findViewById<ListView>(R.id.listview_other)
         val adapter = OtherViewAdapter(this, wordListOther)

@@ -16,16 +16,21 @@ class Fragment_word : Fragment() {
 
         val layout = inflater.inflate(R.layout.fragment_word, container, false)
 
-
         wordListFW = arguments!!.get("word") as ArrayList<Word>
         userId = arguments!!.get("userId") as String
-
 
 
         val adapter = CustomViewAdapter(wordListFW,0 , userId)
 
         val listview = layout.findViewById(R.id.listview_word_name) as ListView
         listview.setAdapter(adapter)
+
+        var testIdx = 0
+
+        while(testIdx<wordListFW.size){
+            println("${wordListFW[testIdx]} : ${testIdx}")
+            testIdx+=1
+        }
 
         return layout
 

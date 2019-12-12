@@ -26,6 +26,14 @@ class Fragment_mean : Fragment() {
         val listview = layout.findViewById(R.id.listview_word_mean) as ListView
         listview.setAdapter(adapter)
 
+        var testIdx = 0
+
+        while(testIdx<wordListFM.size){
+            println("${wordListFM[testIdx]} : ${testIdx}")
+            testIdx+=1
+        }
+
+
         return layout
 
     }

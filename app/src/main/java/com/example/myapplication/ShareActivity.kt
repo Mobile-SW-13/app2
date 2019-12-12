@@ -33,7 +33,7 @@ class ShareActivity : AppCompatActivity()  {
         println(userList[0])
 
         var listview = findViewById<ListView>(R.id.listview_userList)
-        var adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, userList)
+        var adapter = SharingViewAdapter(this, userList)
         listview.adapter = adapter
 
         button_share_search.setOnClickListener {
@@ -87,9 +87,10 @@ class ShareActivity : AppCompatActivity()  {
                     otherBundle.putSerializable("word", otherWordList)
                     val intentOther = Intent(this,OtherActivity::class.java)
                     intentOther.putExtra("wordList", otherBundle)
+                    intentOther.putExtra("userID", adapter.getItem(position).toString())
                     startActivity(intentOther)
                 }else{
-
+                    Toast.makeText(this, "해당 유저의 단어장은 비어있습니다.", Toast.LENGTH_SHORT).show();
                 }
 
             }, 1500)

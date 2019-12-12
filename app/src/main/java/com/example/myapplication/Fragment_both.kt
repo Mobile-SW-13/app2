@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_find.*
 
 
 class Fragment_both : Fragment() {
@@ -69,14 +70,11 @@ class Fragment_both : Fragment() {
                     Toast.makeText(container?.context, "?", Toast.LENGTH_LONG)
                 }else{
 
-
                     val bothRef = bothDB.getReference("${userId}/wordNote/${textName.text.toString()}")
                     bothRef.setValue("${textMean.text}")
                     wordListFB.add(Word(textName.text.toString(),textMean.text.toString()))
                     adapter.notifyDataSetChanged()
                     popupWindow.dismiss()
-
-
 
                 }
             }
@@ -85,6 +83,13 @@ class Fragment_both : Fragment() {
 
             popupWindow.showAtLocation(popupView,Gravity.CENTER,0,0)
 
+        }
+
+        var testIdx = 0
+
+        while(testIdx<wordListFB.size){
+            println("${wordListFB[testIdx]} : ${testIdx}")
+            testIdx+=1
         }
 
         return layout
