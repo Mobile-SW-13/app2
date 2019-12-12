@@ -270,7 +270,7 @@ class QuizActivity : AppCompatActivity() {
                 setQuestion = tempNum
                 break
             }
-        }
+        }//문제 설정,문제로 선정 됐다고 기록
 
         setRight = randM.nextInt(5)
 
@@ -295,7 +295,7 @@ class QuizActivity : AppCompatActivity() {
                 setFive = setQuestion
                 quizWordList[setFive].defproblem =1
             }
-        }
+        }//정답 설정, 문항으로 다시 나올 수 없게 설정
 
         if(setRight!=0){
             while(true) {

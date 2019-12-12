@@ -1,14 +1,10 @@
 package com.example.myapplication
 
-import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_find.*
@@ -89,8 +85,8 @@ class FindActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg params: String): String {
 
-            val clientId = "sUoNOVQRX2ytJDihmSkH"//애플리케이션 클라이언트 아이디값";
-            val clientSecret = "MoraHUpncQ"//애플리케이션 클라이언트 시크릿값";
+            val clientId = ""//애플리케이션 클라이언트 아이디값";
+            val clientSecret = ""//애플리케이션 클라이언트 시크릿값";
             try {
                 val text = URLEncoder.encode(params[0], "UTF-8") //넘어온게 배열이었어?
                 val apiURL = "https://openapi.naver.com/v1/papago/n2mt"
